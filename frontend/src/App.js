@@ -16,7 +16,7 @@ function App() {
       data: null,
       error: false
     })
-    axios.get('https://localhost:8443/products')
+    axios.get('https://192.168.8.102:8443/products')
       .then(response => {
         console.log(response)
         setRequest({
