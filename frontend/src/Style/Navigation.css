@@ -1,0 +1,23 @@
+#background {
+    position: absolute;
+    height: 100vh;
+    width: 100%;
+    top: 0px;
+    background-color: black;
+}
+
+#menu {
+    position: absolute;
+    height: 100vh;
+    width: 30%;
+    top: 0px;
+    background-color: white;
+}
+
+#navButton {
+    position: absolute;
+    margin-left: 95%;
+    top: 4vw;
+    width: 1.5rem;
+    height: 1.5rem;
+}

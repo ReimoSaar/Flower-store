@@ -1,0 +1,23 @@
+#productCard {
+    border-color: #DFDFDF;
+    border-style: solid;
+    border-width: 0.01rem;
+    width: 33.3%;
+    box-sizing: border-box;
+}
+
+#image {
+    width: 20rem;
+    height: 12rem;
+    display: block;
+    margin: auto;
+    margin-bottom: 1rem;
+}
+
+#name {
+    text-align: center;
+}
+
+#price {
+    margin-left: 2rem;
+}

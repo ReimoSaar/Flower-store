@@ -1,0 +1,12 @@
+#productList {
+    display: flex;
+    flex-direction: row;
+    flex-flow: wrap;
+    margin: auto;
+    width: 80%;
+}
+
+#productsTitle {
+    text-align: center;
+    display: block;
+}
