@@ -3,6 +3,8 @@ package com.example.demo.dao;
 import com.example.demo.model.Product;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 public interface ProductDao {
 
@@ -10,7 +12,7 @@ public interface ProductDao {
 
     List<Product> selectALlProducts();
 
-    //Optional<Product> selectProductByID(UUID id);
+    Product selectProductByID(String name);
 
     //int deleteProductById(UUID id);
 

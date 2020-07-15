@@ -1,0 +1,19 @@
+#product {
+    margin: auto;
+    border-color: #B3B3B3;
+    border-style: solid;
+    text-align: center;
+    border-width: 0.01rem;
+    display: flex;
+    flex-direction: row;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+}
+
+#descriptionBox {
+    margin-right: 10rem;
+}
+
+#product #image {
+    margin-right: 10rem;
+}

@@ -7,6 +7,8 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @Repository("postgres")
 public class ProductDataAccessService implements ProductDao {
@@ -27,6 +29,18 @@ public class ProductDataAccessService implements ProductDao {
             final double price = resultSet.getDouble("price");
             final String imageUrl = resultSet.getString("image_url");
             return new Product(name, stock, price, imageUrl);
+        });
+    }
+
+    @Override
+    public Product selectProductByID(String name) {
+        final String sql = "SELECT * FROM products WHERE name = ?";
+        return jdbcTemplate.queryForObject(sql, new Object[] {name}, (resultSet, i) -> {
+            final String productName = resultSet.getString("name");
+            final int stock = resultSet.getInt("stock");
+            final double price = resultSet.getDouble("price");
+            final String imageUrl = resultSet.getString("image_url");
+            return new Product(productName, stock, price, imageUrl);
         });
     }
 }

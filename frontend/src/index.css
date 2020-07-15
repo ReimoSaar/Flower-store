@@ -12,6 +12,14 @@ code {
     monospace;
 }
 
-html {
-  font-size: 1vw;
+@media screen and (min-width: 1000px) {
+  html {
+    font-size: 1vw;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  html {
+    font-size: 10px;
+  }
 }
