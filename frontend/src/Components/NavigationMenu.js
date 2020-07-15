@@ -13,13 +13,6 @@ function NavigationMenu(props) {
                         Home
                     </Link>
                 </li>
-                <li>
-                    <Link
-                        to="/about"
-                        onClick={props.closeMenu}>
-                        About us
-                    </Link>
-                </li>
             </ul>
         </div>
     )

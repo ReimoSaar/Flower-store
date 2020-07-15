@@ -2,6 +2,8 @@ import React from 'react'
 import { useParams } from 'react-router-dom'
 import FetchData from '../Tools/FetchData'
 import "../Style/Product.css"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 
 function Product() {
     const { name } = useParams()
@@ -29,6 +31,9 @@ function Product() {
                     <h2 id="name">{product.data.name}</h2>
                     <p id="price">{product.data.price.toFixed(2)} €</p>
                     <p id="stock">{product.data.stock} is left</p>
+                    <button id="addToCartButton"> Add to cart
+                        <FontAwesomeIcon id="cart" icon={faShoppingCart}/>
+                    </button>
                 </div>
             </div>
         </div>

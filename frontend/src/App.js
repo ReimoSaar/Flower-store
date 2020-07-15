@@ -1,7 +1,6 @@
 import React from 'react';
 import Home from "./Components/Home/Home"
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import About from "./Components/About/About"
 import Navigation from "./Components/Navigation"
 import "./Style/App.css"
 import Product from "./Components/Product"
@@ -14,7 +13,6 @@ function App() {
       <Router>
         <Switch>
           <Route path="/" exact component={Home} />
-          <Route path="/about" exact component={About} />
           <Route path="/products/:name" exact component={Product} />
         </Switch>
         <Navigation />
