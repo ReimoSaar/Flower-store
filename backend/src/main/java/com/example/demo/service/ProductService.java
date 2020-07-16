@@ -1,41 +1,33 @@
 package com.example.demo.service;
 
-import com.example.demo.dao.ProductDao;
+import com.example.demo.dao.StoreDao;
 import com.example.demo.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.UUID;
+import java.util.Map;
 
 @Service
 public class ProductService {
 
-    private final ProductDao productDao;
+    private final StoreDao storeDao;
 
     @Autowired
-    public ProductService(@Qualifier("postgres") ProductDao productDao) {
-        this.productDao = productDao;
+    public ProductService(@Qualifier("postgres") StoreDao storeDao) {
+        this.storeDao = storeDao;
     }
 
-    /*public int addProduct(Product product) {
-        return productDao.insertProduct(product);
-    }*/
-
-    public List<Product> getAllProducts() {
-        return productDao.selectALlProducts();
+    public List<Map<String, Object>> getAllProducts() {
+        return storeDao.selectALlProducts();
     }
 
     public Product getProductById(String name) {
-        return productDao.selectProductByID(name);
+        return storeDao.selectProductByID(name);
     }
 
-    /*public int deletePerson(UUID id) {
-        return productDao.deletePersonById(id);
+    public List<Map<String, Object>> getTopThreeRelatedProducts(String name) {
+        return storeDao.selectTopThreeRelatedProducts(name);
     }
-
-    public int updatePerson(UUID id, Person newPerson) {
-        return productDao.updatePersonById(id, newPerson);
-    }*/
 }

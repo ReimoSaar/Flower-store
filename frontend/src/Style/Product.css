@@ -28,3 +28,8 @@
     width: 8rem;
     height: 2rem;
 }
+
+#productListTitle {
+    margin-top: 2rem;
+    text-align: center;
+}
