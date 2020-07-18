@@ -51,4 +51,35 @@ public class StoreDataAccessService implements StoreDao {
         return jdbcTemplate
                 .queryForList(sql, name, name);
     }
+
+    @Override
+    public List<Map<String, Object>> selectCartItems() {
+        final String sql = "SELECT\n" +
+                "cart.id,\n" +
+                "products.name,\n" +
+                "products.stock,\n" +
+                "products.price,\n" +
+                "products.image_url,\n" +
+                "cart.quantity\n" +
+                "FROM products\n" +
+                "INNER JOIN cart ON (products.name = cart.products_name)\n" +
+                "ORDER BY products.name";
+        return jdbcTemplate
+                .queryForList(sql);
+    }
+
+    @Override
+    public int updateCartItem(long id, int quantity) {
+        final String sql = "UPDATE cart\n" +
+                "SET quantity = ?\n" +
+                "WHERE id = ?";
+        return jdbcTemplate.update(sql, quantity, id);
+    }
+
+    @Override
+    public int addCartItem(String name) {
+        final String sql = "INSERT INTO cart (products_name, quantity)\n" +
+                "VALUES (?, 1)";
+        return jdbcTemplate.update(sql, name);
+    }
 }

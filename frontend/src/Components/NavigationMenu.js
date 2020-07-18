@@ -13,6 +13,13 @@ function NavigationMenu(props) {
                         Home
                     </Link>
                 </li>
+                <li>
+                    <Link
+                        to="/cart"
+                        onClick={props.closeMenu}>
+                        Cart
+                    </Link>
+                </li>
             </ul>
         </div>
     )

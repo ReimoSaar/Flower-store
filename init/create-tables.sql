@@ -22,3 +22,19 @@ CREATE TABLE IF NOT EXISTS "order_lines" (
     "quantity_ordered" integer NOT NULL,
     PRIMARY KEY ("id")
 );
+
+CREATE TABLE public.cart
+(
+    id serial NOT NULL,
+    products_name character varying(30) NOT NULL UNIQUE,
+    quantity integer NOT NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (products_name)
+        REFERENCES public.products (name) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+        NOT VALID
+);
+
+ALTER TABLE public.cart
+    OWNER to "user";

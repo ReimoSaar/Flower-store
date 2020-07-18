@@ -13,5 +13,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .requiresChannel()
                 .anyRequest()
                 .requiresSecure();
+        http.cors().and().csrf().disable();
     }
 }

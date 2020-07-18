@@ -30,4 +30,17 @@ public class ProductService {
     public List<Map<String, Object>> getTopThreeRelatedProducts(String name) {
         return storeDao.selectTopThreeRelatedProducts(name);
     }
+
+    public List<Map<String, Object>> getCartItems() {
+        return storeDao.selectCartItems();
+    }
+
+    public int putCartItem(long id, int quantity) {
+        return storeDao.updateCartItem(id, quantity);
+    }
+
+    public int postCartItem(String name) {
+        return storeDao.addCartItem(name);
+    }
+
 }

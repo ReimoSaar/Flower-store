@@ -1,0 +1,30 @@
+.cartItem {
+    margin-left: 2rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    margin-right: 2rem;
+}
+
+.cartItemImage {
+    width: 5rem;
+    height: 3rem;
+    vertical-align: middle;
+}
+
+.cartItemText {
+    display: inline;
+    font-size: 1.5rem;
+    vertical-align: middle;
+}
+
+.quantityChanger {
+    display: inline;
+}
+
+.quantityChangerButton {
+    font-size: 1.5rem;
+    vertical-align: middle;
+    border-style: solid;
+    width: 2rem;
+    height: 2rem;
+}

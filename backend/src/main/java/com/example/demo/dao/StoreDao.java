@@ -15,6 +15,12 @@ public interface StoreDao {
 
     List<Map<String, Object>> selectTopThreeRelatedProducts(String name);
 
+    List<Map<String, Object>> selectCartItems();
+
+    int updateCartItem(long id, int quantity);
+
+    int addCartItem(String name);
+
     //int deleteProductById(UUID id);
 
     //int updateProductById(UUID id, Person person);

@@ -5,6 +5,7 @@ import "../Style/Product.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 import ProductCard from "./Home/ProductCard"
+import axios from 'axios'
 
 function Product() {
     const { name } = useParams()
@@ -13,6 +14,14 @@ function Product() {
     let relatedProductsContent = null;
     let product = FetchData(`https://192.168.8.103:8443/products/${name}`)
     let relatedProducts = FetchData(`https://192.168.8.103:8443/products/related/${name}`)
+
+    const addCartItem = () => {
+        const url = `https://192.168.8.103:8443/products/cart/post/${name}`
+        axios.post(url)
+            .catch(error => {
+                console.log(error.message)
+            })
+    }
 
     if (product.error) {
         content = <p>
@@ -39,8 +48,8 @@ function Product() {
                     <h2 id="name">{product.data.name}</h2>
                     <p id="price">{product.data.price.toFixed(2)} €</p>
                     <p id="stock">{product.data.stock} is left</p>
-                    <button id="addToCartButton"> Add to cart
-                        <FontAwesomeIcon id="cart" icon={faShoppingCart} />
+                    <button id="addToCartButton" onClick={() => addCartItem()}> Add to cart
+                        <FontAwesomeIcon icon={faShoppingCart} />
                     </button>
                 </div>
             </div>
