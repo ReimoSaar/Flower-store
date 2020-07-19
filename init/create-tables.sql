@@ -3,7 +3,7 @@ CREATE TABLE IF NOT EXISTS "products" (
     "stock" integer NOT NULL,
     "price" numeric NOT NULL,
 	"image_url" text NOT NULL,
-    CONSTRAINT stock_nonnegative CHECK (products.stock >= 0);
+    CONSTRAINT stock_nonnegative CHECK (products.stock >= 0),
     PRIMARY KEY ("name")
 );
 
