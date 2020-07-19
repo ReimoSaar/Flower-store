@@ -2,12 +2,15 @@ package com.example.demo.api;
 
 import com.example.demo.model.Product;
 import com.example.demo.service.ProductService;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -50,14 +53,14 @@ public class ProductController {
     }
 
     @CrossOrigin
-    @PutMapping(path = "/cart/put/{id}/{quantity}")
-    public int putCartItem(@PathVariable("id") long id, @PathVariable("quantity") int quantity) {
-        return productService.putCartItem(id, quantity);
+    @PutMapping(path = "/cart/put")
+    public int putCartItem(@RequestBody Map<String, Object> cartItemValues) {
+        return productService.putCartItem(cartItemValues);
     }
 
     @CrossOrigin
-    @PostMapping(path = "/cart/post/{name}")
-    public int postCartItem(@PathVariable("name") String name) {
+    @PostMapping(path = "/cart/post")
+    public int postCartItem(@RequestBody String name) {
         return productService.postCartItem(name);
     }
 
@@ -65,5 +68,11 @@ public class ProductController {
     @GetMapping(path="/cart/sum")
     public double getCartSum() {
         return productService.getCartSum();
+    }
+
+    @CrossOrigin
+    @DeleteMapping(path="/cart/delete")
+    public int deleteFromCart(@RequestBody Map<String, Object> cartItemId) {
+        return productService.deleteFromCart(cartItemId);
     }
 }

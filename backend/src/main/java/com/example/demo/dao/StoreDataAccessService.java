@@ -69,10 +69,12 @@ public class StoreDataAccessService implements StoreDao {
     }
 
     @Override
-    public int updateCartItem(long id, int quantity) {
+    public int updateCartItem(Map<String, Object> cartItemValues) {
         final String sql = "UPDATE cart\n" +
                 "SET quantity = ?\n" +
                 "WHERE id = ?";
+        final int quantity = (int) cartItemValues.get("quantity");
+        final long id = ((Integer) cartItemValues.get("id")).longValue();
         return jdbcTemplate.update(sql, quantity, id);
     }
 
@@ -89,5 +91,12 @@ public class StoreDataAccessService implements StoreDao {
                 "FROM cart\n" +
                 "INNER JOIN products ON (cart.products_name = products.name)";
         return jdbcTemplate.queryForObject(sql, Double.class);
+    }
+
+    @Override
+    public int removeCartItem(Map<String, Object> cartItemId) {
+        final String sql = "DELETE FROM cart WHERE id = ?";
+        final long id = ((Integer) cartItemId.get("id")).longValue();
+        return jdbcTemplate.update(sql, id);
     }
 }

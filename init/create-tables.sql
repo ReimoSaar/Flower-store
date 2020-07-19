@@ -3,6 +3,7 @@ CREATE TABLE IF NOT EXISTS "products" (
     "stock" integer NOT NULL,
     "price" numeric NOT NULL,
 	"image_url" text NOT NULL,
+    CONSTRAINT stock_nonnegative CHECK (products.stock >= 0);
     PRIMARY KEY ("name")
 );
 
@@ -33,7 +34,8 @@ CREATE TABLE public.cart
         REFERENCES public.products (name) MATCH SIMPLE
         ON UPDATE NO ACTION
         ON DELETE NO ACTION
-        NOT VALID
+        NOT VALID,
+    CONSTRAINT quantity_noninvalid CHECK (cart.quantity >= 1)
 );
 
 ALTER TABLE public.cart

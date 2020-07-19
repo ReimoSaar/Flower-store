@@ -16,8 +16,13 @@ function Product() {
     let relatedProducts = FetchData(`https://192.168.8.103:8443/products/related/${name}`)
 
     const addCartItem = () => {
-        const url = `https://192.168.8.103:8443/products/cart/post/${name}`
-        axios.post(url)
+        const url = `https://192.168.8.103:8443/products/cart/post`
+        axios.post(url, name, {
+            headers: {
+                'Content-Length': 0,
+                'Content-Type': 'text/plain'
+            }
+        })
             .catch(error => {
                 console.log(error.message)
             })

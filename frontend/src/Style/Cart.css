@@ -4,3 +4,8 @@
     border-style: solid;
     margin: auto;
 }
+
+#totalCartPrice {
+    margin-left: 2rem;
+    font-size: 1.5rem;
+}

@@ -17,11 +17,13 @@ public interface StoreDao {
 
     List<Map<String, Object>> selectCartItems();
 
-    int updateCartItem(long id, int quantity);
+    int updateCartItem(Map<String, Object> cartItemValues);
 
     int addCartItem(String name);
 
     double selectCartSum();
+
+    int removeCartItem(Map<String, Object> cartItemId);
 
     //int deleteProductById(UUID id);
 

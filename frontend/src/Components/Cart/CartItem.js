@@ -2,17 +2,22 @@ import React, { useState, useEffect } from 'react'
 import "../../Style/CartItem.css"
 import { Link } from 'react-router-dom'
 import axios from 'axios';
+import { faTimes } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-function CartItem({ id, name, stock, price, image_url, quantity, changeCartSum }) {
+function CartItem({ id, name, stock, price, image_url, quantity, changeCartSum, loadCartItems }) {
     const [quantityNum, setQuantityNum] = useState(quantity)
 
     // updates quantity in database
     useEffect(() => {
-        const url = `https://192.168.8.103:8443/products/cart/put/${id}/${quantityNum}`
-        axios.put(url)
+        const url = 'https://192.168.8.103:8443/products/cart/put'
+        axios.put(url, {
+            "quantity": quantityNum,
+            "id": id
+        })
             .then(() => {
                 axios.get('https://192.168.8.103:8443/products/cart/sum')
-                    .then(response => {
+                    .then(() => {
                         changeCartSum()
                     })
                     .catch(error => {
@@ -24,6 +29,22 @@ function CartItem({ id, name, stock, price, image_url, quantity, changeCartSum }
             })
         // eslint-disable-next-line
     }, [quantityNum])
+
+    const removeItem = () => {
+        const url = "https://192.168.8.103:8443/products/cart/delete"
+        axios.delete(url, {
+            headers: {
+                "Content-Type": "application/json"
+            },
+            data: {
+                "id": id
+            }
+        })
+        .then(() => {
+            loadCartItems()
+            changeCartSum()
+        })
+    }
 
     return (
         <div className="cartItem">
@@ -38,6 +59,7 @@ function CartItem({ id, name, stock, price, image_url, quantity, changeCartSum }
                 <p className="cartItemText"> {quantityNum} </p>
                 <button className="quantityChangerButton" onClick={() => setQuantityNum(quantityNum + 1)}>+</button>
             </div>
+            <FontAwesomeIcon onClick={() => removeItem()} style={{ color: 'red', marginLeft: '2rem' }} icon={faTimes} />
             <hr></hr>
         </div>
     )

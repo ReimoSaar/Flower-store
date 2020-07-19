@@ -35,8 +35,8 @@ public class ProductService {
         return storeDao.selectCartItems();
     }
 
-    public int putCartItem(long id, int quantity) {
-        return storeDao.updateCartItem(id, quantity);
+    public int putCartItem(Map<String, Object> cartItemValues) {
+        return storeDao.updateCartItem(cartItemValues);
     }
 
     public int postCartItem(String name) {
@@ -45,6 +45,10 @@ public class ProductService {
 
     public double getCartSum() {
         return storeDao.selectCartSum();
+    }
+
+    public int deleteFromCart(Map<String, Object> cartItemId) {
+        return storeDao.removeCartItem(cartItemId);
     }
 
 }

@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import CartItem from "./CartItem"
-import FetchData from "../../Tools/FetchData"
 import "../../Style/Cart.css"
 import axios from 'axios'
 
 function Cart() {
-    let cartItems = FetchData('https://192.168.8.103:8443/products/cart')
     let content = null
 
     const [cartSum, setCartSum] = useState(0)
+
+    const [cartItems, setCartItems] = useState(null)
 
     const changeCartSum = () => {
         axios.get('https://192.168.8.103:8443/products/cart/sum')
@@ -20,12 +20,23 @@ function Cart() {
             })
     }
 
+    const loadCartItems = () => {
+        axios.get('https://192.168.8.103:8443/products/cart')
+        .then(response => {
+            setCartItems(response.data)
+        })
+        .catch(error => {
+            console.log(error.message)
+        })
+    }
+
     useEffect(() => {
         changeCartSum()
+        loadCartItems()
     }, [])
 
-    if (cartItems.data) {
-        content = cartItems.data.map((cartItem, key) =>
+    if (cartItems) {
+        content = cartItems.map((cartItem, key) =>
             <CartItem
                 id={cartItem.id}
                 name={cartItem.name}
@@ -34,13 +45,14 @@ function Cart() {
                 image_url={cartItem.image_url}
                 quantity={cartItem.quantity}
                 changeCartSum={changeCartSum}
+                loadCartItems={loadCartItems}
             />
         )
     }
     return (
         <div id="cart">
             {content}
-            <p>total: {cartSum} €</p>
+            <p id="totalCartPrice">total: {cartSum} €</p>
         </div>
     )
 }
