@@ -43,4 +43,8 @@ public class ProductService {
         return storeDao.addCartItem(name);
     }
 
+    public double getCartSum() {
+        return storeDao.selectCartSum();
+    }
+
 }

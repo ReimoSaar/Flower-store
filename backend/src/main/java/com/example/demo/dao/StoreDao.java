@@ -21,6 +21,8 @@ public interface StoreDao {
 
     int addCartItem(String name);
 
+    double selectCartSum();
+
     //int deleteProductById(UUID id);
 
     //int updateProductById(UUID id, Person person);

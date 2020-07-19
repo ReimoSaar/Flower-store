@@ -60,4 +60,10 @@ public class ProductController {
     public int postCartItem(@PathVariable("name") String name) {
         return productService.postCartItem(name);
     }
+
+    @CrossOrigin
+    @GetMapping(path="/cart/sum")
+    public double getCartSum() {
+        return productService.getCartSum();
+    }
 }

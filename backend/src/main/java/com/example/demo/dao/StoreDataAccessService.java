@@ -82,4 +82,12 @@ public class StoreDataAccessService implements StoreDao {
                 "VALUES (?, 1)";
         return jdbcTemplate.update(sql, name);
     }
+
+    @Override
+    public double selectCartSum() {
+        final String sql = "SELECT SUM(products.price * cart.quantity)\n" +
+                "FROM cart\n" +
+                "INNER JOIN products ON (cart.products_name = products.name)";
+        return jdbcTemplate.queryForObject(sql, Double.class);
+    }
 }

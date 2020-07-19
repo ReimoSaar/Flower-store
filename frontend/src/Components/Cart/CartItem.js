@@ -3,19 +3,28 @@ import "../../Style/CartItem.css"
 import { Link } from 'react-router-dom'
 import axios from 'axios';
 
-function CartItem({ id, name, stock, price, image_url, quantity }) {
+function CartItem({ id, name, stock, price, image_url, quantity, changeCartSum }) {
     const [quantityNum, setQuantityNum] = useState(quantity)
 
     // updates quantity in database
     useEffect(() => {
         const url = `https://192.168.8.103:8443/products/cart/put/${id}/${quantityNum}`
         axios.put(url)
+            .then(() => {
+                axios.get('https://192.168.8.103:8443/products/cart/sum')
+                    .then(response => {
+                        changeCartSum()
+                    })
+                    .catch(error => {
+                        console.log(error.message)
+                    })
+            })
             .catch(error => {
                 console.log(error.message)
             })
-            // eslint-disable-next-line
+        // eslint-disable-next-line
     }, [quantityNum])
-    
+
     return (
         <div className="cartItem">
             <Link to={`/products/${name}`}>
