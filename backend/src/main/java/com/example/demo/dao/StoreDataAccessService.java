@@ -4,6 +4,7 @@ import com.example.demo.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 import java.util.Map;
@@ -20,7 +21,9 @@ public class StoreDataAccessService implements StoreDao {
 
     @Override
     public List<Map<String, Object>> selectALlProducts() {
-        final String sql = "SELECT products.name, products.price, products.image_url FROM products";
+        final String sql = "SELECT products.name, products.price, products.image_url, products.stock\n" +
+                "FROM products\n" +
+                "ORDER BY products.name";
         return jdbcTemplate
                 .queryForList(sql);
     }
@@ -39,7 +42,7 @@ public class StoreDataAccessService implements StoreDao {
 
     @Override
     public List<Map<String, Object>> selectTopThreeRelatedProducts(String name) {
-        final String sql = "SELECT products.name, products.price, products.image_url FROM order_lines\n" +
+        final String sql = "SELECT products.name, products.price, products.image_url, products.stock FROM order_lines\n" +
                 "INNER JOIN products ON (order_lines.products_name = products.name)\n" +
                 "WHERE order_lines.orders_id IN (\n" +
                 "\tSELECT order_lines.orders_id\n" +
@@ -87,7 +90,7 @@ public class StoreDataAccessService implements StoreDao {
 
     @Override
     public double selectCartSum() {
-        final String sql = "SELECT SUM(products.price * cart.quantity)\n" +
+        final String sql = "SELECT COALESCE(SUM(products.price * cart.quantity), 0)\n" +
                 "FROM cart\n" +
                 "INNER JOIN products ON (cart.products_name = products.name)";
         return jdbcTemplate.queryForObject(sql, Double.class);
@@ -95,8 +98,29 @@ public class StoreDataAccessService implements StoreDao {
 
     @Override
     public int removeCartItem(Map<String, Object> cartItemId) {
-        final String sql = "DELETE FROM cart WHERE id = ?";
-        final long id = ((Integer) cartItemId.get("id")).longValue();
-        return jdbcTemplate.update(sql, id);
+        final String sql = "DELETE FROM cart WHERE products_name = ?";
+        final String productsName = (String) cartItemId.get("name");
+        return jdbcTemplate.update(sql, productsName);
+    }
+
+    @Override
+    public boolean selectCartItemExists(String productName) {
+        final String sql = "SELECT EXISTS(SELECT cart.products_name FROM cart WHERE cart.products_name = ?)";
+        return jdbcTemplate.queryForObject(sql, Boolean.class, productName);
+    }
+
+    @Override
+    public int addNewOrder() {
+        final String sql = "SELECT create_order()";
+        jdbcTemplate.execute(sql);
+        return 1;
+    }
+
+    @Override
+    public int selectProductStock(String name) {
+        final String sql = "SELECT products.stock\n" +
+                "FROM products\n" +
+                "WHERE products.name = ?";
+        return jdbcTemplate.queryForObject(sql, Integer.class, name);
     }
 }

@@ -25,7 +25,9 @@ public interface StoreDao {
 
     int removeCartItem(Map<String, Object> cartItemId);
 
-    //int deleteProductById(UUID id);
+    boolean selectCartItemExists(String productName);
 
-    //int updateProductById(UUID id, Person person);
+    int addNewOrder();
+
+    int selectProductStock(String name);
 }

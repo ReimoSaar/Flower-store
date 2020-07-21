@@ -51,4 +51,16 @@ public class ProductService {
         return storeDao.removeCartItem(cartItemId);
     }
 
+    public boolean getCartItemExists(String productName) {
+        return storeDao.selectCartItemExists(productName);
+    }
+
+    public int postNewOrder() {
+        return storeDao.addNewOrder();
+    }
+
+    public int getProductStock(String name) {
+        return storeDao.selectProductStock(name);
+    }
+
 }

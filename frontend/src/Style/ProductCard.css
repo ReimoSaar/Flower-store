@@ -9,11 +9,12 @@
 }
 
 #productCard #image {
-    width: 20rem;
     height: 12rem;
+    width: 100%;
     display: block;
     margin: auto;
     margin-bottom: 1rem;
+    position: relative;
 }
 
 #productCard #name {
@@ -22,4 +23,18 @@
 
 #productCard #price {
     margin-left: 2rem;
+}
+
+#out_of_stock_image {
+    position: absolute;
+    height: 12rem;
+    display: block;
+    top: 0;
+    width: 100%;
+}
+
+#imageBox {
+    margin: auto;
+    width: 20rem;
+    position: relative;
 }

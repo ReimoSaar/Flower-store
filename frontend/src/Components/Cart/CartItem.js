@@ -8,15 +8,22 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 function CartItem({ id, name, stock, price, image_url, quantity, changeCartSum, loadCartItems }) {
     const [quantityNum, setQuantityNum] = useState(quantity)
 
+    const updateQuantityNum = (number) => {
+        const newQuantity = quantityNum + number
+        if (newQuantity <= stock && newQuantity >= 1) {
+            setQuantityNum(newQuantity)
+        }
+    }
+
     // updates quantity in database
     useEffect(() => {
-        const url = 'https://192.168.8.103:8443/products/cart/put'
+        const url = 'https://192.168.8.102:8443/store/cart/put'
         axios.put(url, {
             "quantity": quantityNum,
             "id": id
         })
             .then(() => {
-                axios.get('https://192.168.8.103:8443/products/cart/sum')
+                axios.get('https://192.168.8.102:8443/store/cart/sum')
                     .then(() => {
                         changeCartSum()
                     })
@@ -31,18 +38,17 @@ function CartItem({ id, name, stock, price, image_url, quantity, changeCartSum, 
     }, [quantityNum])
 
     const removeItem = () => {
-        const url = "https://192.168.8.103:8443/products/cart/delete"
+        const url = "https://192.168.8.102:8443/store/cart/delete"
         axios.delete(url, {
             headers: {
                 "Content-Type": "application/json"
             },
             data: {
-                "id": id
+                "name": name
             }
         })
         .then(() => {
             loadCartItems()
-            changeCartSum()
         })
     }
 
@@ -55,9 +61,9 @@ function CartItem({ id, name, stock, price, image_url, quantity, changeCartSum, 
             <p className="cartItemText"> In stock: {stock} </p>
             <p className="cartItemText"> price: {price} €</p>
             <div className="quantityChanger">
-                <button className="quantityChangerButton" onClick={() => setQuantityNum(quantityNum - 1)}>-</button>
+                <button className="quantityChangerButton" onClick={() => updateQuantityNum(-1)}>-</button>
                 <p className="cartItemText"> {quantityNum} </p>
-                <button className="quantityChangerButton" onClick={() => setQuantityNum(quantityNum + 1)}>+</button>
+                <button className="quantityChangerButton" onClick={() => updateQuantityNum(1)}>+</button>
             </div>
             <FontAwesomeIcon onClick={() => removeItem()} style={{ color: 'red', marginLeft: '2rem' }} icon={faTimes} />
             <hr></hr>

@@ -5,13 +5,13 @@ import "../../Style/Products.css"
 
 function Products() {
 
-    let products = FetchData('https://192.168.8.103:8443/products');
+    let products = FetchData('https://192.168.8.102:8443/store');
 
     let content = null;
     if (products.data) {
         content =
             products.data.map((product, key) =>
-                <ProductCard name={product.name} price={product.price} image_url={product.image_url} />
+                <ProductCard name={product.name} price={product.price} stock={product.stock} image_url={product.image_url} />
             )
     }
 

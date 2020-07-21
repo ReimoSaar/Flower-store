@@ -11,7 +11,7 @@ function Cart() {
     const [cartItems, setCartItems] = useState(null)
 
     const changeCartSum = () => {
-        axios.get('https://192.168.8.103:8443/products/cart/sum')
+        axios.get('https://192.168.8.102:8443/store/cart/sum')
             .then(response => {
                 setCartSum(response.data)
             })
@@ -21,18 +21,29 @@ function Cart() {
     }
 
     const loadCartItems = () => {
-        axios.get('https://192.168.8.103:8443/products/cart')
-        .then(response => {
-            setCartItems(response.data)
-        })
-        .catch(error => {
-            console.log(error.message)
-        })
+        axios.get('https://192.168.8.102:8443/store/cart')
+            .then(response => {
+                setCartItems(response.data)
+                changeCartSum()
+            })
+            .catch(error => {
+                console.log(error.message)
+            })
+    }
+
+    const sendOrder = () => {
+        axios.post('https://192.168.8.102:8443/store/order')
+            .then(() => {
+                loadCartItems()
+            })
+            .catch(error => {
+                console.log(error.message)
+            })
     }
 
     useEffect(() => {
-        changeCartSum()
         loadCartItems()
+        // eslint-disable-next-line
     }, [])
 
     if (cartItems) {
@@ -50,9 +61,12 @@ function Cart() {
         )
     }
     return (
-        <div id="cart">
-            {content}
-            <p id="totalCartPrice">total: {cartSum} €</p>
+        <div>
+            <div id="cart">
+                {content}
+                <p id="totalCartPrice">total: {cartSum} €</p>
+            </div>
+            <button id="buyButton" onClick={() => sendOrder()}>Buy</button>
         </div>
     )
 }

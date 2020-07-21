@@ -27,6 +27,14 @@
     font-size: 1rem;
     width: 8rem;
     height: 2rem;
+    background-color: #E1FFE7
+}
+
+#product #removeFromCartButton {
+    font-size: 1rem;
+    width: 9rem;
+    min-height: 2rem;
+    background-color: #FFE1E1
 }
 
 #productListTitle {

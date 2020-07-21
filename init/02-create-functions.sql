@@ -83,4 +83,34 @@ begin
 end;
 $$ language plpgsql;
 
-select generate_data();
+
+CREATE OR REPLACE FUNCTION create_order() RETURNS void AS $$
+    DECLARE
+        order_subtotal numeric := (SELECT SUM(products.price * cart.quantity)
+                FROM cart INNER JOIN products ON (cart.products_name = products.name));
+		order_id integer := 0;
+		cartItem RECORD;
+    BEGIN
+		IF (SELECT COUNT(*) FROM cart) <= 0 THEN
+			raise exception 'Order is empty';
+		END IF;
+		FOR cartItem IN SELECT cart.products_name,
+			cart.quantity FROM cart
+		LOOP
+			UPDATE products
+			SET stock = products.stock - cartItem.quantity
+			WHERE products.name = cartItem.products_name;
+		END LOOP;
+		INSERT INTO orders(order_time, order_subtotal, order_total)
+		VALUES (current_timestamp, order_subtotal, order_subtotal * 1.05);
+		order_id := (SELECT orders.id FROM orders
+				ORDER BY orders.id DESC LIMIT 1);
+		FOR cartItem IN SELECT cart.products_name,
+			cart.quantity FROM cart
+		LOOP
+			INSERT INTO order_lines(products_name, orders_id, quantity_ordered)
+			VALUES (cartItem.products_name, order_id, cartItem.quantity);
+		END LOOP;
+		DELETE FROM cart;
+    END;
+$$ LANGUAGE plpgsql;
