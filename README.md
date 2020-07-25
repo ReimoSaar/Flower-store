@@ -9,7 +9,7 @@ My first dockerized full stack application. Created with ReactJS, PostgreSQL, Sp
 - Each product shows top three products that people have bought with it
 
 ## Start the application:
-- Go to frontend/src/Tools/getBackendDomainAndPort.js and change the ip according to where you run the docker-compose command
+- Go to frontend/src/Tools/getBackendDomainAndPort.js and change the ip according to where you plan on running the docker-compose command
 - Run "docker-compose up" while in the same folder with docker-compose.yml file
 - Write docker host machine ip into web browser address bar with http protocol. (http://&lt;ip&gt;)
 
