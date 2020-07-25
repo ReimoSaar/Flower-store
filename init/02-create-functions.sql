@@ -39,46 +39,47 @@ declare
   var varchar := '';
   orders_rec RECORD;
 begin
-  DELETE FROM "order_lines";
-  DELETE FROM "products";
-  DELETE FROM "orders";
+  DELETE FROM cart;
+  DELETE FROM order_lines;
+  DELETE FROM products;
+  DELETE FROM orders;
   -- inserts values into products
   for i in 1..20 loop
     flower_name := flower_names[i];
 	flower_image_url := flower_images_urls[i];
 	stock := floor(random() * 100 + 50)::int;
 	price := prices[1+random()*(array_length(prices, 1)-1)];
-	INSERT INTO "products" ("name", "stock", "price", "image_url") Values (flower_name, stock, price, flower_image_url);
+	INSERT INTO products ("name", stock, price, image_url) Values (flower_name, stock, price, flower_image_url);
   end loop;
   -- inserts defined id and order_time into orders
   for i in 1..50 loop
     order_time := NOW() + (random() * (NOW()+'90 days' - NOW())) + '30 days';
-  	INSERT INTO "orders" ("order_time", "order_subtotal", "order_total")
+  	INSERT INTO orders (order_time, order_subtotal, order_total)
 	VALUES (order_time, order_subtotal_generated, order_total_generated);
 	flower_name := flower_names[1+random()*(array_length(flower_names, 1)-1)];
   end loop;
   -- inserts at least one value into order_lines for each order id
-  FOR orders_rec IN SELECT "orders"."id" 
-	       FROM "orders"
+  FOR orders_rec IN SELECT orders.id 
+	       FROM orders
 	loop
 	  for i in 1..floor(random() * 3 + 1)::int loop
 	    flower_name := flower_names[1+random()*(array_length(flower_names, 1)-1)];
-	    order_ids := orders_rec."id";
+	    order_ids := orders_rec.id;
 	    quantity_ordered := floor(random() * 10 + 5)::int;
-        INSERT INTO "order_lines" ("products_name", "orders_id", "quantity_ordered")
+        INSERT INTO order_lines (products_name, orders_id, quantity_ordered)
 	    VALUES (flower_name, order_ids, quantity_ordered);
 	  end loop;
 	end loop;
   -- inserts defined order_subtotal and order_total into orders
-  FOR orders_rec IN SELECT "orders"."id" 
-	       FROM "orders"
+  FOR orders_rec IN SELECT orders.id 
+	       FROM orders
 	loop
-	  order_subtotal_generated := SUM("products"."price" * "order_lines"."quantity_ordered") FROM "order_lines" 
-	  INNER JOIN "products" ON ("order_lines"."products_name" = "products"."name")
-	  WHERE "order_lines"."orders_id" = orders_rec."id";
-	  UPDATE "orders" SET "order_subtotal" = order_subtotal_generated WHERE "orders"."id" = orders_rec."id";
+	  order_subtotal_generated := SUM(products.price * order_lines.quantity_ordered) FROM order_lines
+	  INNER JOIN products ON (order_lines.products_name = products.name)
+	  WHERE order_lines.orders_id = orders_rec.id;
+	  UPDATE orders SET order_subtotal = order_subtotal_generated WHERE orders.id = orders_rec.id;
 	  order_total_generated := order_subtotal_generated * 1.05;
-	  UPDATE "orders" SET "order_total" = order_total_generated WHERE "orders"."id" = orders_rec."id";
+	  UPDATE orders SET order_total = order_total_generated WHERE orders.id = orders_rec.id;
 	end loop;
 end;
 $$ language plpgsql;

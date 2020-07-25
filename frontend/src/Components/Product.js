@@ -4,21 +4,22 @@ import FetchData from '../Tools/FetchData'
 import "../Style/Product.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
-import ProductCard from "./Home/ProductCard"
+import ProductCard from "./Products/ProductCard"
 import axios from 'axios'
+import getBackendDomainAndPort from "../Tools/getBackendDomainAndPort"
 
 function Product() {
     const { name } = useParams()
 
     let content = null
     let relatedProductsContent = null;
-    let product = FetchData(`https://192.168.8.102:8443/store/${name}`)
-    let relatedProducts = FetchData(`https://192.168.8.102:8443/store/related/${name}`)
+    let product = FetchData(`https://${getBackendDomainAndPort()}/store/${name}`)
+    let relatedProducts = FetchData(`https://${getBackendDomainAndPort()}/store/related/${name}`)
     let [isInCart, setIsInCart] = useState(false)
     let [isProductAvailable, setIsProductAvailable] = useState(false)
 
     const addCartItem = () => {
-        const url = 'https://192.168.8.102:8443/store/cart/post'
+        const url = `https://${getBackendDomainAndPort()}/store/cart/post`
         axios.post(url, name, {
             headers: {
                 'Content-Length': 0,
@@ -34,7 +35,7 @@ function Product() {
     }
 
     const checkIfItemInCart = () => {
-        const url = `https://192.168.8.102:8443/store/cart/exist/${name}`
+        const url = `https://${getBackendDomainAndPort()}/store/cart/exist/${name}`
         axios.get(url)
             .then(response => {
                 setIsInCart(response.data)
@@ -45,7 +46,7 @@ function Product() {
     }
 
     const checkProductAvailable = () => {
-        const url = `https://192.168.8.102:8443/store/stock/${name}`
+        const url = `https://${getBackendDomainAndPort()}/store/stock/${name}`
         axios.get(url)
             .then(response => {
                 if (response.data > 0) {
@@ -59,7 +60,7 @@ function Product() {
     }
 
     const removeCartItem = () => {
-        const url = "https://192.168.8.102:8443/store/cart/delete"
+        const url = `https://${getBackendDomainAndPort()}/store/cart/delete`
         axios.delete(url, {
             headers: {
                 "Content-Type": "application/json"

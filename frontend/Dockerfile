@@ -1,5 +1,5 @@
-FROM node:10
-WORKDIR '/app'
+FROM node:12
+WORKDIR '/frontend'
 
 COPY package.json .
 RUN yarn install

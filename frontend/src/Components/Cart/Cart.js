@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import CartItem from "./CartItem"
 import "../../Style/Cart.css"
 import axios from 'axios'
+import getBackendDomainAndPort from "../../Tools/getBackendDomainAndPort"
 
 function Cart() {
     let content = null
@@ -11,7 +12,7 @@ function Cart() {
     const [cartItems, setCartItems] = useState(null)
 
     const changeCartSum = () => {
-        axios.get('https://192.168.8.102:8443/store/cart/sum')
+        axios.get(`https://${getBackendDomainAndPort()}/store/cart/sum`)
             .then(response => {
                 setCartSum(response.data)
             })
@@ -21,7 +22,7 @@ function Cart() {
     }
 
     const loadCartItems = () => {
-        axios.get('https://192.168.8.102:8443/store/cart')
+        axios.get(`https://${getBackendDomainAndPort()}/store/cart`)
             .then(response => {
                 setCartItems(response.data)
                 changeCartSum()
@@ -32,7 +33,7 @@ function Cart() {
     }
 
     const sendOrder = () => {
-        axios.post('https://192.168.8.102:8443/store/order')
+        axios.post(`https://${getBackendDomainAndPort()}/store/order`)
             .then(() => {
                 loadCartItems()
             })

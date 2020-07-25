@@ -1,5 +1,5 @@
 import React from 'react';
-import Home from "./Components/Home/Home"
+import Products from "./Components/Products/Products"
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Navigation from "./Components/Navigation"
 import "./Style/App.css"
@@ -13,7 +13,7 @@ function App() {
       <h1 id="title">Flower Store</h1>
       <Router>
         <Switch>
-          <Route path="/" exact component={Home} />
+          <Route path="/" exact component={Products} />
           <Route path="/cart" exact component={Cart} />
           <Route path="/products/:name" exact component={Product} />
         </Switch>

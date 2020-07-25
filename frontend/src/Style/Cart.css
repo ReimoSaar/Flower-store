@@ -12,6 +12,9 @@
 
 #buyButton {
     margin-top: 1rem;
-    margin-left: 86%;
+    margin-left: calc(90% - 4rem);
     font-size: 1.2rem;
+    width: 4rem;
+    height: 2rem;
+    margin-bottom: 2rem;
 }

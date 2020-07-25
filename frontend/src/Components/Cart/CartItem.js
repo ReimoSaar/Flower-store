@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import axios from 'axios';
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import getBackendDomainAndPort from "../../Tools/getBackendDomainAndPort"
 
 function CartItem({ id, name, stock, price, image_url, quantity, changeCartSum, loadCartItems }) {
     const [quantityNum, setQuantityNum] = useState(quantity)
@@ -17,13 +18,13 @@ function CartItem({ id, name, stock, price, image_url, quantity, changeCartSum, 
 
     // updates quantity in database
     useEffect(() => {
-        const url = 'https://192.168.8.102:8443/store/cart/put'
+        const url = `https://${getBackendDomainAndPort()}/store/cart/put`
         axios.put(url, {
             "quantity": quantityNum,
             "id": id
         })
             .then(() => {
-                axios.get('https://192.168.8.102:8443/store/cart/sum')
+                axios.get(`https://${getBackendDomainAndPort()}/store/cart/sum`)
                     .then(() => {
                         changeCartSum()
                     })
@@ -38,7 +39,7 @@ function CartItem({ id, name, stock, price, image_url, quantity, changeCartSum, 
     }, [quantityNum])
 
     const removeItem = () => {
-        const url = "https://192.168.8.102:8443/store/cart/delete"
+        const url = `https://${getBackendDomainAndPort()}/store/cart/delete`
         axios.delete(url, {
             headers: {
                 "Content-Type": "application/json"
@@ -57,15 +58,15 @@ function CartItem({ id, name, stock, price, image_url, quantity, changeCartSum, 
             <Link to={`/products/${name}`}>
                 <img className="cartItemImage" src={image_url} alt=""></img>
             </Link>
-            <p className="cartItemText"> {name} </p>
+            <p className="cartItemText"> <b>{name}</b> </p>
             <p className="cartItemText"> In stock: {stock} </p>
             <p className="cartItemText"> price: {price} €</p>
             <div className="quantityChanger">
                 <button className="quantityChangerButton" onClick={() => updateQuantityNum(-1)}>-</button>
-                <p className="cartItemText"> {quantityNum} </p>
+                <p style={{display: 'inline-block', fontSize: '1.5rem', verticalAlign: 'middle', width: '2.5rem', textAlign: 'center'}}> {quantityNum} </p>
                 <button className="quantityChangerButton" onClick={() => updateQuantityNum(1)}>+</button>
             </div>
-            <FontAwesomeIcon onClick={() => removeItem()} style={{ color: 'red', marginLeft: '2rem' }} icon={faTimes} />
+            <FontAwesomeIcon class="removeItemButton" onClick={() => removeItem()} icon={faTimes} />
             <hr></hr>
         </div>
     )
