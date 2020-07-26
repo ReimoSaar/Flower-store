@@ -1,6 +1,17 @@
 # Flower-store
 My first dockerized full stack application. Created with ReactJS, PostgreSQL, Spring Boot and NGINX.
 
+## Images:
+![flower-store](https://user-images.githubusercontent.com/63605374/88483653-e779e180-cf71-11ea-8451-4cc19997db84.jpg)
+
+![flower-store-2](https://user-images.githubusercontent.com/63605374/88484225-bb605f80-cf75-11ea-9c26-35df59ac67b6.jpg)
+
+![flower-store-3](https://user-images.githubusercontent.com/63605374/88484230-be5b5000-cf75-11ea-9838-054abb329932.jpg)
+
+![flower-store-4](https://user-images.githubusercontent.com/63605374/88484231-c0251380-cf75-11ea-9314-e142db935a95.jpg)
+
+![flower-store-5](https://user-images.githubusercontent.com/63605374/88484234-c2876d80-cf75-11ea-9e54-e511ad0f5263.jpg)
+
 ## Features:
 - Simple buying system.
 - Inserts generated values into database on first initialization.
