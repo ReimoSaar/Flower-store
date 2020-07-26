@@ -26,7 +26,7 @@ My first dockerized full stack application. Created with ReactJS, PostgreSQL, Sp
 - Write docker host machine ip into web browser address bar with http protocol. (http://&lt;ip&gt;).
 
 ## Regenerate values in database
-sudo docker exec -it &lt;database container name&gt; psql -U user -d Store -f docker-entrypoint-initdb.d/03-data-generator.sql
+docker exec -it &lt;database container name&gt; psql -U user -d Store -f docker-entrypoint-initdb.d/03-data-generator.sql
 
 ## Possible problems:
 - Frontend might not be able to send requests to backend, since Spring Boot is using https protocol, then web browser might look at it as a threat.
