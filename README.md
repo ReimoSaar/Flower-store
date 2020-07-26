@@ -7,6 +7,7 @@ My first dockerized full stack application. Created with ReactJS, PostgreSQL, Sp
 - Cart system of adding and removing products
 - Easy to run
 - Each product shows top three products that people have bought with it
+- Fits all types of resolutions (including 4k)
 
 ## Start the application:
 - Go to frontend/src/Tools/getBackendDomainAndPort.js and change the ip according to where you plan on running the docker-compose command
