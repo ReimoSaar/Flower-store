@@ -6,7 +6,7 @@ import getBackendDomainAndPort from "../../Tools/getBackendDomainAndPort"
 
 function Products() {
 
-    let products = FetchData(`https://${getBackendDomainAndPort()}/store`);
+    let products = FetchData(`https://${getBackendDomainAndPort()}/products`);
 
     let content = null;
     if (products.data) {

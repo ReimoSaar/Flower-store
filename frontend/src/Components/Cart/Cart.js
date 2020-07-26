@@ -12,7 +12,7 @@ function Cart() {
     const [cartItems, setCartItems] = useState(null)
 
     const changeCartSum = () => {
-        axios.get(`https://${getBackendDomainAndPort()}/store/cart/sum`)
+        axios.get(`https://${getBackendDomainAndPort()}/cart/sum`)
             .then(response => {
                 setCartSum(response.data)
             })
@@ -22,7 +22,7 @@ function Cart() {
     }
 
     const loadCartItems = () => {
-        axios.get(`https://${getBackendDomainAndPort()}/store/cart`)
+        axios.get(`https://${getBackendDomainAndPort()}/cart`)
             .then(response => {
                 setCartItems(response.data)
                 changeCartSum()
@@ -33,7 +33,7 @@ function Cart() {
     }
 
     const sendOrder = () => {
-        axios.post(`https://${getBackendDomainAndPort()}/store/order`)
+        axios.post(`https://${getBackendDomainAndPort()}/order`)
             .then(() => {
                 loadCartItems()
             })

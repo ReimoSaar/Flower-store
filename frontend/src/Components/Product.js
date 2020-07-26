@@ -13,13 +13,13 @@ function Product() {
 
     let content = null
     let relatedProductsContent = null;
-    let product = FetchData(`https://${getBackendDomainAndPort()}/store/${name}`)
-    let relatedProducts = FetchData(`https://${getBackendDomainAndPort()}/store/related/${name}`)
+    let product = FetchData(`https://${getBackendDomainAndPort()}/products/${name}`)
+    let relatedProducts = FetchData(`https://${getBackendDomainAndPort()}/products/related/${name}`)
     let [isInCart, setIsInCart] = useState(false)
     let [isProductAvailable, setIsProductAvailable] = useState(false)
 
     const addCartItem = () => {
-        const url = `https://${getBackendDomainAndPort()}/store/cart/post`
+        const url = `https://${getBackendDomainAndPort()}/cart/post`
         axios.post(url, name, {
             headers: {
                 'Content-Length': 0,
@@ -35,7 +35,7 @@ function Product() {
     }
 
     const checkIfItemInCart = () => {
-        const url = `https://${getBackendDomainAndPort()}/store/cart/exist/${name}`
+        const url = `https://${getBackendDomainAndPort()}/cart/exist/${name}`
         axios.get(url)
             .then(response => {
                 setIsInCart(response.data)
@@ -46,7 +46,7 @@ function Product() {
     }
 
     const checkProductAvailable = () => {
-        const url = `https://${getBackendDomainAndPort()}/store/stock/${name}`
+        const url = `https://${getBackendDomainAndPort()}/products/stock/${name}`
         axios.get(url)
             .then(response => {
                 if (response.data > 0) {
@@ -60,7 +60,7 @@ function Product() {
     }
 
     const removeCartItem = () => {
-        const url = `https://${getBackendDomainAndPort()}/store/cart/delete`
+        const url = `https://${getBackendDomainAndPort()}/cart/delete`
         axios.delete(url, {
             headers: {
                 "Content-Type": "application/json"

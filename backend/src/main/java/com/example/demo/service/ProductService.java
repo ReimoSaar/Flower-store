@@ -1,6 +1,6 @@
 package com.example.demo.service;
 
-import com.example.demo.dao.StoreDao;
+import com.example.demo.dao.ProductDao;
 import com.example.demo.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -12,55 +12,27 @@ import java.util.Map;
 @Service
 public class ProductService {
 
-    private final StoreDao storeDao;
+    private final ProductDao productDao;
 
     @Autowired
-    public ProductService(@Qualifier("postgres") StoreDao storeDao) {
-        this.storeDao = storeDao;
+    public ProductService(@Qualifier("products") ProductDao productDao) {
+        this.productDao = productDao;
     }
 
     public List<Map<String, Object>> getAllProducts() {
-        return storeDao.selectALlProducts();
+        return productDao.selectALlProducts();
     }
 
     public Product getProductById(String name) {
-        return storeDao.selectProductByID(name);
+        return productDao.selectProductByID(name);
     }
 
     public List<Map<String, Object>> getTopThreeRelatedProducts(String name) {
-        return storeDao.selectTopThreeRelatedProducts(name);
-    }
-
-    public List<Map<String, Object>> getCartItems() {
-        return storeDao.selectCartItems();
-    }
-
-    public int putCartItem(Map<String, Object> cartItemValues) {
-        return storeDao.updateCartItem(cartItemValues);
-    }
-
-    public int postCartItem(String name) {
-        return storeDao.addCartItem(name);
-    }
-
-    public double getCartSum() {
-        return storeDao.selectCartSum();
-    }
-
-    public int deleteFromCart(Map<String, Object> cartItemId) {
-        return storeDao.removeCartItem(cartItemId);
-    }
-
-    public boolean getCartItemExists(String productName) {
-        return storeDao.selectCartItemExists(productName);
-    }
-
-    public int postNewOrder() {
-        return storeDao.addNewOrder();
+        return productDao.selectTopThreeRelatedProducts(name);
     }
 
     public int getProductStock(String name) {
-        return storeDao.selectProductStock(name);
+        return productDao.selectProductStock(name);
     }
 
 }

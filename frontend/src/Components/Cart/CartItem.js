@@ -18,13 +18,13 @@ function CartItem({ id, name, stock, price, image_url, quantity, changeCartSum, 
 
     // updates quantity in database
     useEffect(() => {
-        const url = `https://${getBackendDomainAndPort()}/store/cart/put`
+        const url = `https://${getBackendDomainAndPort()}/cart/put`
         axios.put(url, {
             "quantity": quantityNum,
             "id": id
         })
             .then(() => {
-                axios.get(`https://${getBackendDomainAndPort()}/store/cart/sum`)
+                axios.get(`https://${getBackendDomainAndPort()}/cart/sum`)
                     .then(() => {
                         changeCartSum()
                     })
@@ -39,7 +39,7 @@ function CartItem({ id, name, stock, price, image_url, quantity, changeCartSum, 
     }, [quantityNum])
 
     const removeItem = () => {
-        const url = `https://${getBackendDomainAndPort()}/store/cart/delete`
+        const url = `https://${getBackendDomainAndPort()}/cart/delete`
         axios.delete(url, {
             headers: {
                 "Content-Type": "application/json"
