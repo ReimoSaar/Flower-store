@@ -1,25 +1,24 @@
-#background {
+.background {
     height: 100vh;
     width: 100%;
     top: 0px;
     background-color: black;
 }
 
-#menu {
+.menu {
     height: 100vh;
     width: 25rem;
     top: 0px;
     background-color: white;
 }
 
-#navButton {
+.nav-button {
     position: fixed;
     margin-left: 4%;
     top: 4vw;
     width: 1.5rem;
     height: 1.5rem;
-}
-
-#navButton:hover {
-    cursor: pointer;
+    &:hover {
+        cursor: pointer;
+    }
 }

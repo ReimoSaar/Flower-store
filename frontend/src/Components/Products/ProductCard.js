@@ -1,31 +1,30 @@
-import React, { useState } from 'react'
-import "../../Style/ProductCard.css"
+import React from 'react'
+import "../../Style/Components/ProductCard.scss"
 import { Link } from 'react-router-dom'
 import outOfStockImage from '../../resources/out_of_stock.png';
 
 function ProductCard({ name, price, stock, image_url }) {
-    let image = null;
     const setImage = () => {
         if (stock <= 0) {
             return (
-                <div id="imageBox">
-                    <img id="image" key={name} src={image_url} alt="" width="350" height="200" />
-                    <img id="out_of_stock_image" src={outOfStockImage} alt="" width="350" height="200" />
+                <div  className="image-box">
+                    <img className="image-box__image image-box__image--product" key={name} src={image_url} alt="" width="350" height="200" />
+                    <img className="image-box__image image-box__image--out-of-stock" src={outOfStockImage} alt="" width="350" height="200" />
                 </div>
             )
         } else {
             return (
-                <div id="imageBox">
-                    <img id="image" key={name} src={image_url} alt="" width="350" height="200" />
+                <div className="image-box">
+                    <img className="image-box__image image-box__image--product" key={name} src={image_url} alt="" width="350" height="200" />
                 </div>
             )
         }
     }
     return (
-        <Link to={`/products/${name}`} id="productCard">
-            <h2 id="name">{name}</h2>
+        <Link to={`/products/${name}`} className="product-card">
+            <h2 className="product-card__name">{name}</h2>
             {setImage()}
-            <p id="price">{price.toFixed(2)} €</p>
+            <p className="product-card__price">{price.toFixed(2)} €</p>
         </Link>
     )
 }

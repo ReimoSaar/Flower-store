@@ -1,7 +1,7 @@
 import React from 'react'
 import FetchData from "../../Tools/FetchData"
 import ProductCard from "./ProductCard"
-import "../../Style/Products.css"
+import "../../Style/Components/Products.scss"
 import getBackendDomainAndPort from "../../Tools/getBackendDomainAndPort"
 
 function Products() {
@@ -18,8 +18,8 @@ function Products() {
 
     return (
         <div>
-            <h2 id="productsTitle">Products</h2>
-            <div id="productList">
+            <h2 className="products-title">Products</h2>
+            <div className="product-list">
                 {content}
             </div>
         </div>

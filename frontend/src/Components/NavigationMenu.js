@@ -1,16 +1,16 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import "../Style/NavigationMenu.css"
+import "../Style/Components/NavigationMenu.scss"
 
 function NavigationMenu(props) {
     return (
-        <div id="navigationMenu">
-            <h2 id="navigationMenuTitle">Menu</h2>
+        <div className="navigation-menu">
+            <h2 className="navigation-menu__title">Menu</h2>
             <p>
                 <Link
                     to="/"
                     onClick={props.closeMenu}
-                    className="navigationMenuText">
+                    className="navigation-menu__text">
                     Products
                 </Link>
             </p>
@@ -19,7 +19,7 @@ function NavigationMenu(props) {
                 <Link
                     to="/cart"
                     onClick={props.closeMenu}
-                    className="navigationMenuText">
+                    className="navigation-menu__text">
                     Cart
                 </Link>
             </p>

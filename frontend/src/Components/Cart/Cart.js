@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import CartItem from "./CartItem"
-import "../../Style/Cart.css"
+import "../../Style/Components/Cart.scss"
 import axios from 'axios'
 import getBackendDomainAndPort from "../../Tools/getBackendDomainAndPort"
 
@@ -63,11 +63,11 @@ function Cart() {
     }
     return (
         <div>
-            <div id="cart">
+            <div className="cart">
                 {content}
-                <p id="totalCartPrice">total: {cartSum} €</p>
+                <p className="cart__total-price">total: {cartSum} €</p>
             </div>
-            <button id="buyButton" onClick={() => sendOrder()}>Buy</button>
+            <button className="cart__buy-button" onClick={() => sendOrder()}>Buy</button>
         </div>
     )
 }

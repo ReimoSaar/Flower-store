@@ -1,0 +1,9 @@
+@import '../products-area';
+
+.product-list {
+    @include productsArea;
+}
+
+.products-title {
+    text-align: center;
+}

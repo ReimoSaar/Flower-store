@@ -1,0 +1,18 @@
+.cart {
+    width: 80%;
+    justify-content: center;
+    border-style: solid;
+    margin: auto;
+    &__total-price {
+        margin-left: 2rem;
+        font-size: 1.5rem;
+    }
+    &__buy-button {
+        margin-top: 1rem;
+        margin-left: calc(90% - 4rem);
+        font-size: 1.2rem;
+        width: 4rem;
+        height: 2rem;
+        margin-bottom: 2rem;
+    }
+}

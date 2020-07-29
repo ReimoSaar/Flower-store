@@ -1,0 +1,58 @@
+@import '../products-area';
+
+.product {
+    margin: auto;
+    border-color: #B3B3B3;
+    border-style: solid;
+    text-align: center;
+    border-width: 0.01rem;
+    display: flex;
+    flex-direction: row;
+    flex-flow: wrap;
+    align-items: center;
+    justify-content: center;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    width: 80%;
+    &__image {
+        width: 30rem;
+        height: 18rem;
+    }
+    @media screen and (max-width: 400px) {
+        &__image {
+          width: 20rem;
+          height: 12rem;
+        }
+    }
+    &__description-box {
+        margin:4rem;
+    }
+    &__name {
+
+    }
+    &__price {
+
+    }
+    &__stock {
+
+    }
+    &__cart-button {
+        font-size: 1rem;
+        min-height: 2rem;
+        &--add {
+            width: 8rem;
+            background-color: #E1FFE7;
+        }
+        &--remove {
+            width: 9rem;
+            background-color: #FFE1E1;
+        }
+    }
+    &__products-list-title {
+        margin-top: 2rem;
+        text-align: center;
+    }
+    &__products-list {
+        @include productsArea;
+    }
+}

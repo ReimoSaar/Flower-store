@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import FetchData from '../Tools/FetchData'
-import "../Style/Product.css"
+import "../Style/Components/Product.scss"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 import ProductCard from "./Products/ProductCard"
@@ -91,11 +91,11 @@ function Product() {
         let button = null;
         if (isProductAvailable) {
             if (isInCart) {
-                button = <button id="removeFromCartButton" onClick={() => removeCartItem()}> Remove from cart
+                button = <button className="product__cart-button product__cart-button--remove" onClick={() => removeCartItem()}> Remove from cart
             <FontAwesomeIcon icon={faShoppingCart} />
                 </button>
             } else {
-                button = <button id="addToCartButton" onClick={() => addCartItem()}> Add to cart
+                button = <button className="product__cart-button product__cart-button--add" onClick={() => addCartItem()}> Add to cart
             <FontAwesomeIcon icon={faShoppingCart} />
                 </button>
             }
@@ -112,17 +112,17 @@ function Product() {
 
     if (product.data) {
         content = <div>
-            <div id="product">
-                <img id="image" alt="" src={product.data.image_url} />
-                <div id="descriptionBox">
-                    <h2 id="name">{product.data.name}</h2>
-                    <p id="price">{product.data.price.toFixed(2)} €</p>
-                    <p id="stock">{product.data.stock} is left</p>
+            <div className="product">
+                <img className="product__image" alt="" src={product.data.image_url} />
+                <div className="product__description-box">
+                    <h2 className="product__name">{product.data.name}</h2>
+                    <p className="product__price">{product.data.price.toFixed(2)} €</p>
+                    <p className="product__stock">{product.data.stock} is left</p>
                     {addCartButton()}
                 </div>
             </div>
-            <h3 id="productListTitle">Top 3 products that people have bought with it</h3>
-            <div id="productList">
+            <h3 className="product__products-list-title">Top 3 products that people have bought with it</h3>
+            <div className="product__products-list">
                 {relatedProductsContent}
             </div>
         </div>

@@ -1,4 +1,4 @@
-#productList {
+@mixin productsArea {
     display: -webkit-box;
     display: -moz-box;
     display: -ms-flexbox;
@@ -8,8 +8,4 @@
     flex-flow: wrap;
     justify-content: center;
     margin-bottom: 2rem;
-}
-
-#productsTitle {
-    text-align: center;
 }

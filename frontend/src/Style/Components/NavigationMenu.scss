@@ -1,0 +1,16 @@
+.navigation-menu {
+    margin-top: 0;
+    &__title {
+        margin-top: 0;
+        padding-left: 2rem;
+        height: 3.4rem;
+        padding-top: 1rem;
+        background-color: #B6DDFF;
+    }
+    &__text {
+        margin-left: 3rem;
+        text-decoration: none;
+        font-size: 1.3rem;
+        color: #46A3FF;
+    }
+}

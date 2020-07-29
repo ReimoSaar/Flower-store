@@ -1,0 +1,35 @@
+.product-card {
+    border-color: #DFDFDF;
+    border-style: solid;
+    border-width: 0.01rem;
+    width: 26rem;
+    box-sizing: border-box;
+    text-decoration: none;
+    color: black;
+    &__name {
+        text-align: center;
+    }
+    &__price {
+        margin-left: 2rem;
+    }
+}
+
+.image-box {
+    margin: auto;
+    width: 20rem;
+    position: relative;
+    &__image {
+        height: 12rem;
+        display: block;
+        width: 100%;
+        &--product {
+            margin: auto;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+        &--out-of-stock {
+            position: absolute;
+            top: 0;
+        }
+    }
+}

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import "../../Style/CartItem.css"
+import "../../Style/Components/CartItem.scss"
 import { Link } from 'react-router-dom'
 import axios from 'axios';
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
@@ -54,19 +54,19 @@ function CartItem({ id, name, stock, price, image_url, quantity, changeCartSum, 
     }
 
     return (
-        <div className="cartItem">
+        <div className="cart-item">
             <Link to={`/products/${name}`}>
-                <img className="cartItemImage" src={image_url} alt=""></img>
+                <img className="cart-item__image" src={image_url} alt=""></img>
             </Link>
-            <p className="cartItemText"> <b>{name}</b> </p>
-            <p className="cartItemText"> In stock: {stock} </p>
-            <p className="cartItemText"> price: {price} €</p>
-            <div className="quantityChanger">
-                <button className="quantityChangerButton" onClick={() => updateQuantityNum(-1)}>-</button>
-                <p style={{display: 'inline-block', fontSize: '1.5rem', verticalAlign: 'middle', width: '2.5rem', textAlign: 'center'}}> {quantityNum} </p>
-                <button className="quantityChangerButton" onClick={() => updateQuantityNum(1)}>+</button>
+            <p className="cart-item__text"> <b>{name}</b> </p>
+            <p className="cart-item__text"> In stock: {stock} </p>
+            <p className="cart-item__text"> price: {price} €</p>
+            <div className="cart-item__quantity-changer">
+                <button className="cart-item__quantity-button" onClick={() => updateQuantityNum(-1)}>-</button>
+                <p className="cart-item__quantity-num"> {quantityNum} </p>
+                <button className="cart-item__quantity-button" onClick={() => updateQuantityNum(1)}>+</button>
             </div>
-            <FontAwesomeIcon class="removeItemButton" onClick={() => removeItem()} icon={faTimes} />
+            <FontAwesomeIcon class="cart-item__remove-button" onClick={() => removeItem()} icon={faTimes} />
             <hr></hr>
         </div>
     )
