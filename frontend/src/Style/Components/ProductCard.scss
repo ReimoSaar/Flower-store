@@ -1,11 +1,16 @@
-.product-card {
+.product-card-container {
+    text-decoration: none;
+    color: black;
+    position: relative;
     border-color: #DFDFDF;
     border-style: solid;
     border-width: 0.01rem;
     width: 26rem;
     box-sizing: border-box;
-    text-decoration: none;
-    color: black;
+    height: 21rem;
+}
+
+.product-card {
     &__name {
         text-align: center;
     }
@@ -22,6 +27,7 @@
         height: 12rem;
         display: block;
         width: 100%;
+        position: relative;
         &--product {
             margin: auto;
             margin-bottom: 1rem;

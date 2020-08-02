@@ -6,7 +6,7 @@ import NavigationMenu from "./NavigationMenu"
 import "../Style/Components/Navigation.scss"
 
 function Navigation() {
-    const [show, set] = useState(false)
+    const [show, setShow] = useState(false)
     const menuTransitions = useTransition(show, null, {
         from: { position: 'fixed', opacity: 0, left: '-31%' },
         enter: { opacity: 1, left: '0' },
@@ -20,17 +20,17 @@ function Navigation() {
 
     return (
         <div>
-            <FontAwesomeIcon class="nav-button" icon={faBars} onClick={() => set(!show)}/>
+            <FontAwesomeIcon class="nav-button" icon={faBars} onClick={() => setShow(!show)}/>
             {
                 maskTransitions.map(({ item, key, props }) =>
-                item && <animated.div className="background" key={key} style={props} onClick={() => set(!show)}>
+                item && <animated.div className="background" key={key} style={props} onClick={() => setShow(!show)}>
                 </animated.div>
             )
             }
             {
                 menuTransitions.map(({ item, key, props }) =>
                     item && <animated.div className="menu" key={key} style={props}>
-                        <NavigationMenu closeMenu={() => set(false)}/>
+                        <NavigationMenu closeMenu={() => setShow(false)}/>
                     </animated.div>
                 )
             }
