@@ -11,11 +11,20 @@
 }
 
 .product-card {
+    text-align: center;
+    position: relative;
     &__name {
         text-align: center;
     }
+    &__stock {
+        margin-left: 2rem;
+    }
     &__price {
         margin-left: 2rem;
+    }
+    &__cart-button {
+        position: relative;
+        margin-left: 4rem;
     }
 }
 

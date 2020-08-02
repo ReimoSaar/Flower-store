@@ -3,12 +3,13 @@ import "../../Style/Components/ProductCard.scss"
 import { Link } from 'react-router-dom'
 import outOfStockImage from '../../resources/out_of_stock.png';
 import { useSpring, animated } from 'react-spring'
+import CartButton from "../CartButton"
 
 function ProductCard({ name, price, stock, image_url }) {
     const [showCartButton, setShowCartButton] = useState(false)
     const cartButtonStyle = useSpring({
         overflow: 'hidden',
-        height: showCartButton ? 100 : 0
+        height: showCartButton ? 150 : 0
     })
     const productsCardBorderStyle = useSpring({
         to: async (next, cancel) => {
@@ -68,7 +69,10 @@ function ProductCard({ name, price, stock, image_url }) {
                 <h2 className="product-card__name">{name}</h2>
                 {setImage()}
                 {
-                    <animated.div style={cartButtonStyle}>i will fade</animated.div>
+                    <animated.div style={cartButtonStyle}>
+                        <p className="product-card__stock">{stock} is left</p>
+                        <CartButton productName={name} className="product-card__cart-button"/>
+                    </animated.div>
                 }
                 <p className="product-card__price">{price.toFixed(2)} €</p>
             </animated.div>
