@@ -20,7 +20,7 @@ function ProductCard({ name, price, stock, image_url }) {
                 })
                 await next({
                     config: { duration: 500},
-                    boxShadow: "0px 0px 31px 0px rgba(0,0,0,0.48)"
+                    boxShadow: "0px 0px 1.6rem 0px rgba(0,0,0,0.48)"
                 })
             } else {
                 await next({
@@ -29,7 +29,7 @@ function ProductCard({ name, price, stock, image_url }) {
                 })
                 await next({
                     config: { duration: 500},
-                    boxShadow: "0px 0px 31px 0px rgba(0,0,0,0)",
+                    boxShadow: "0px 0px 1.6rem 0px rgba(0,0,0,0)",
                 })
                 await next({
                     config: { duration: 0},
