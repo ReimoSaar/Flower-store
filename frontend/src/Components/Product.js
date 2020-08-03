@@ -14,12 +14,6 @@ function Product() {
     let product = FetchData(`https://${getBackendDomainAndPort()}/products/${name}`)
     let relatedProducts = FetchData(`https://${getBackendDomainAndPort()}/products/related/${name}`)
 
-    if (product.error) {
-        content = <p>
-            There was an error please refresh or try again later
-        </p>
-    }
-
     if (relatedProducts.data) {
         relatedProductsContent =
             relatedProducts.data.map((product, key) =>
