@@ -7,7 +7,7 @@ import java.util.Map;
 
 public interface ProductDao {
 
-    List<Map<String, Object>> selectALlProducts();
+    List<Product> selectALlProductsByFilter(String condition);
 
     Product selectProductByID(String name);
 

@@ -29,13 +29,13 @@ public class ProductController {
     }
 
     @CrossOrigin
-    @GetMapping
-    public List<Map<String, Object>> getAllProducts() {
-        return productService.getAllProducts();
+    @GetMapping(path = "{condition}")
+    public List<Product> getAllProductsByFilter(@PathVariable("condition") String condition) {
+        return productService.getAllProductsByFilter(condition);
     }
 
     @CrossOrigin
-    @GetMapping(path = "{name}")
+    @GetMapping(path = "get/{name}")
     public Product getProductById(@PathVariable("name") String name) {
         return productService.getProductById(name);
     }

@@ -1,17 +1,31 @@
-import React from 'react'
-import FetchData from "../../Tools/FetchData"
+import React, { useState, useEffect } from 'react'
 import ProductCard from "./ProductCard"
 import "../../Style/Components/Products.scss"
 import getBackendDomainAndPort from "../../Tools/getBackendDomainAndPort"
+import FilterBox from "./FilterBox"
+import axios from 'axios';
 
 function Products() {
 
-    let products = FetchData(`https://${getBackendDomainAndPort()}/products`);
+    const [products, setProducts] = useState(null)
+
+    const changeProducts = (condition) => {
+        axios.get(`https://${getBackendDomainAndPort()}/products/${condition}`)
+            .then(response => {
+                setProducts(response.data)})
+            .catch(error => {
+                console.log(error.message)
+            })
+    }
+
+    useEffect(() => {
+        changeProducts('atoz')
+    }, [])
 
     let content = null;
-    if (products.data) {
+    if (products) {
         content =
-            products.data.map((product, key) =>
+            products.map((product, key) =>
                 <ProductCard name={product.name} price={product.price} stock={product.stock} image_url={product.image_url} />
             )
     }
@@ -19,6 +33,7 @@ function Products() {
     return (
         <div>
             <h2 className="products-title">Products</h2>
+            <FilterBox changeProducts={changeProducts}/>
             <div className="product-list">
                 {content}
             </div>

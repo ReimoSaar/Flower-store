@@ -19,8 +19,8 @@ public class ProductService {
         this.productDao = productDao;
     }
 
-    public List<Map<String, Object>> getAllProducts() {
-        return productDao.selectALlProducts();
+    public List<Product> getAllProductsByFilter(String condition) {
+        return productDao.selectALlProductsByFilter(condition);
     }
 
     public Product getProductById(String name) {

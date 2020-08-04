@@ -11,7 +11,7 @@ function Product() {
 
     let content = null
     let relatedProductsContent = null;
-    let product = FetchData(`https://${getBackendDomainAndPort()}/products/${name}`)
+    let product = FetchData(`https://${getBackendDomainAndPort()}/products/get/${name}`)
     let relatedProducts = FetchData(`https://${getBackendDomainAndPort()}/products/related/${name}`)
 
     if (relatedProducts.data) {

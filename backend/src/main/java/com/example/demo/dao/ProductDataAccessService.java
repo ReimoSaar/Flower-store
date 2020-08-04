@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -19,12 +21,28 @@ public class ProductDataAccessService implements ProductDao {
     }
 
     @Override
-    public List<Map<String, Object>> selectALlProducts() {
+    public List<Product> selectALlProductsByFilter(String condition) {
+        String sqlCondition = null;
+        if (condition.equals("atoz")) {
+            sqlCondition = "ORDER BY products.name";
+        } else if (condition.equals("ztoa")) {
+            sqlCondition = "ORDER BY products.name DESC";
+        }
         final String sql = "SELECT products.name, products.price, products.image_url, products.stock\n" +
                 "FROM products\n" +
-                "ORDER BY products.name";
-        return jdbcTemplate
-                .queryForList(sql);
+                sqlCondition;
+        final List<Product> products = new ArrayList<>();
+        final List<Map<String, Object>> productsJson = jdbcTemplate.queryForList(sql);
+        productsJson.forEach(productJson -> {
+            final Product product = new Product(
+                    (String) productJson.get("name"),
+                    (Integer) productJson.get("stock"),
+                    (BigDecimal) productJson.get("price"),
+                    (String) productJson.get("image_url")
+            );
+            products.add(product);
+        });
+        return products;
     }
 
     @Override
@@ -33,7 +51,7 @@ public class ProductDataAccessService implements ProductDao {
         return jdbcTemplate.queryForObject(sql, new Object[] {name}, (resultSet, i) -> {
             final String productName = resultSet.getString("name");
             final int stock = resultSet.getInt("stock");
-            final double price = resultSet.getDouble("price");
+            final BigDecimal price = resultSet.getBigDecimal("price");
             final String imageUrl = resultSet.getString("image_url");
             return new Product(productName, stock, price, imageUrl);
         });
