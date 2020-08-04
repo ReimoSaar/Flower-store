@@ -69,14 +69,21 @@ function CartButton({ productName }) {
         let button = null;
         if (isProductInStock) {
             if (isInCart) {
-                button = <button className="cart-button cart-button--remove" onClick={() => removeCartItem()}> Remove from cart
-            <FontAwesomeIcon icon={faShoppingCart} />
+                button =
+                <button className="cart-button cart-button--remove" onClick={() => removeCartItem()}> Remove from cart
+                    <FontAwesomeIcon icon={faShoppingCart} />
                 </button>
             } else {
-                button = <button className="cart-button cart-button--add" onClick={() => addCartItem()}> Add to cart
-            <FontAwesomeIcon icon={faShoppingCart} />
+                button =
+                <button className="cart-button cart-button--add" onClick={() => addCartItem()}> Add to cart
+                    <FontAwesomeIcon icon={faShoppingCart} />
                 </button>
             }
+        } else {
+            button =
+            <button className="cart-button cart-button--disabled"> Add to cart
+                <FontAwesomeIcon icon={faShoppingCart} />
+            </button>
         }
         return (
             button

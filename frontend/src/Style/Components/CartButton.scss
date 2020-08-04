@@ -3,10 +3,23 @@
     min-height: 2rem;
     &--add {
         width: 8rem;
-        background-color: #E1FFE7;
+        background-color: #AEFFBE;
+        &:hover {
+            background-color: #6BFF89;
+        }
     }
     &--remove {
         width: 9rem;
-        background-color: #FFE1E1;
+        background-color: #FFD1D1;
+        &:hover {
+            background-color: #FFAEAE;
+        }
+    }
+    &--disabled {
+        width: 8rem;
+        background-color: #E5E5E5;
+        &:hover {
+            cursor: default;
+        }
     }
 }
