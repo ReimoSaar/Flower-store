@@ -22,12 +22,14 @@ public class ProductDataAccessService implements ProductDao {
 
     @Override
     public List<Product> selectALlProductsByFilter(String condition) {
-        String sqlCondition = null;
-        if (condition.equals("atoz")) {
-            sqlCondition = "ORDER BY products.name";
-        } else if (condition.equals("ztoa")) {
-            sqlCondition = "ORDER BY products.name DESC";
-        }
+        String sqlCondition = switch (condition) {
+            case "atoz" -> "ORDER BY products.name";
+            case "ztoa" -> "ORDER BY products.name DESC";
+            case "mostpopular" -> "INNER JOIN order_lines ON (products.name = order_lines.products_name)\n" +
+                    "GROUP BY products.name\n" +
+                    "ORDER BY SUM(order_lines.quantity_ordered) DESC";
+            default -> null;
+        };
         final String sql = "SELECT products.name, products.price, products.image_url, products.stock\n" +
                 "FROM products\n" +
                 sqlCondition;

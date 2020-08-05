@@ -19,7 +19,7 @@ function Products() {
     }
 
     useEffect(() => {
-        changeProducts('atoz')
+        changeProducts('mostpopular')
     }, [])
 
     let content = null;
