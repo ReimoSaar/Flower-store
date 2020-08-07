@@ -43,6 +43,8 @@ function CartButton({ productName }) {
                 if (response.data > 0) {
                     setIsProductInStock(true)
                     checkIfItemInCart()
+                } else {
+                    setIsProductInStock(false)
                 }
             })
             .catch(error => {
@@ -93,7 +95,7 @@ function CartButton({ productName }) {
     useEffect(() => {
         checkProductAvailable()
         // eslint-disable-next-line
-    }, [])
+    }, [productName])
 
     return (
         addCartButton()
