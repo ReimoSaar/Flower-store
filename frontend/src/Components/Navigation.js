@@ -19,17 +19,17 @@ function Navigation() {
     })
 
     return (
-        <div>
-            <FontAwesomeIcon class="nav-button" icon={faBars} onClick={() => setShow(!show)}/>
+        <div className="navigation">
+            <FontAwesomeIcon class="navigation__nav-button" icon={faBars} onClick={() => setShow(!show)}/>
             {
                 maskTransitions.map(({ item, key, props }) =>
-                item && <animated.div className="background" key={key} style={props} onClick={() => setShow(!show)}>
+                item && <animated.div className="navigation__background" key={key} style={props} onClick={() => setShow(!show)}>
                 </animated.div>
             )
             }
             {
                 menuTransitions.map(({ item, key, props }) =>
-                    item && <animated.div className="menu" key={key} style={props}>
+                    item && <animated.div className="navigation__menu" key={key} style={props}>
                         <NavigationMenu closeMenu={() => setShow(false)}/>
                     </animated.div>
                 )

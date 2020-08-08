@@ -25,7 +25,7 @@ public class ProductDataAccessService implements ProductDao {
         String sqlCondition = switch (condition) {
             case "atoz" -> "ORDER BY products.name";
             case "ztoa" -> "ORDER BY products.name DESC";
-            case "mostpopular" -> "INNER JOIN order_lines ON (products.name = order_lines.products_name)\n" +
+            case "mostpopular" -> "LEFT JOIN order_lines ON (products.name = order_lines.products_name)\n" +
                     "GROUP BY products.name\n" +
                     "ORDER BY SUM(order_lines.quantity_ordered) DESC";
             default -> null;

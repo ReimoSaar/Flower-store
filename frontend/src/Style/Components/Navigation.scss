@@ -1,24 +1,26 @@
-.background {
-    height: 100vh;
-    width: 100%;
-    top: 0px;
-    background-color: black;
-}
+.navigation {
+    &__background {
+        height: 100vh;
+        width: 100%;
+        top: 0px;
+        background-color: black;
+    }
 
-.menu {
-    height: 100vh;
-    width: 25rem;
-    top: 0px;
-    background-color: white;
-}
+    &__menu {
+        height: 100vh;
+        width: 25rem;
+        top: 0px;
+        background-color: white;
+    }
 
-.nav-button {
-    position: fixed;
-    margin-left: 4%;
-    top: 4vw;
-    width: 1.5rem;
-    height: 1.5rem;
-    &:hover {
-        cursor: pointer;
+    &__nav-button {
+        position: fixed;
+        margin-left: 4%;
+        top: 4vw;
+        width: 1.5rem;
+        height: 1.5rem;
+        &:hover {
+            cursor: pointer;
+        }
     }
 }
