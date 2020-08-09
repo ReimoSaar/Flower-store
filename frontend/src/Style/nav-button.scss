@@ -1,0 +1,10 @@
+@mixin nav-button {
+    position: fixed;
+    margin-left: 2%;
+    top: 1.25rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    &:hover {
+        cursor: pointer;
+    }
+}
