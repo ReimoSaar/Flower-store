@@ -1,9 +1,10 @@
 @import '../products-area';
 
-.product-list {
-    @include productsArea;
-}
-
-.products-title {
-    text-align: center;
+.products {
+    &__list {
+        @include productsArea;
+    }
+    &__title {
+        text-align: center;
+    }
 }

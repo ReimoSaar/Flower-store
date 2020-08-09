@@ -1,4 +1,4 @@
-.product-card-container {
+.product-card {
     text-decoration: none;
     color: black;
     position: relative;
@@ -8,39 +8,41 @@
     width: 26rem;
     box-sizing: border-box;
     height: 21rem;
-}
-
-.product-card {
-    text-align: center;
-    position: relative;
+    &__inner {
+        text-align: center;
+        position: relative;
+    }
+    &__link {
+        text-decoration: none;
+        color: black
+    }
     &__name {
         text-align: center;
+    }
+    &__image-box {
+        margin: auto;
+        width: 20rem;
+        position: relative;
+        &-image {
+            height: 12rem;
+            display: block;
+            width: 100%;
+            position: relative;
+            &--product {
+                margin: auto;
+                margin-bottom: 1rem;
+                position: relative;
+            }
+            &--out-of-stock {
+                position: absolute;
+                top: 0;
+            }
+        }
     }
     &__stock {
     }
     &__price {
     }
     &__cart-button {
-    }
-}
-
-.image-box {
-    margin: auto;
-    width: 20rem;
-    position: relative;
-    &__image {
-        height: 12rem;
-        display: block;
-        width: 100%;
-        position: relative;
-        &--product {
-            margin: auto;
-            margin-bottom: 1rem;
-            position: relative;
-        }
-        &--out-of-stock {
-            position: absolute;
-            top: 0;
-        }
     }
 }

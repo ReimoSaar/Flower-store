@@ -26,15 +26,15 @@ function Products() {
     if (products) {
         content =
             products.map((product, key) =>
-                <ProductCard name={product.name} price={product.price} stock={product.stock} image_url={product.image_url} />
+                <ProductCard key={product.name} name={product.name} price={product.price} stock={product.stock} image_url={product.image_url} />
             )
     }
 
     return (
-        <div>
-            <h2 className="products-title">Products</h2>
+        <div className="products">
+            <h2 className="products__title">Products</h2>
             <FilterBox changeProducts={changeProducts}/>
-            <div className="product-list">
+            <div className="products__list">
                 {content}
             </div>
         </div>

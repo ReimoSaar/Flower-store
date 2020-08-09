@@ -17,7 +17,7 @@ function Product() {
     if (relatedProducts.data) {
         relatedProductsContent =
             relatedProducts.data.map((product, key) =>
-                <ProductCard name={product.name} price={product.price} stock={product.stock} image_url={product.image_url} />
+                <ProductCard key={product.name} name={product.name} price={product.price} stock={product.stock} image_url={product.image_url} />
             )
     }
 

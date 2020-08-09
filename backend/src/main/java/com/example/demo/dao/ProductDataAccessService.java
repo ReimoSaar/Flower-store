@@ -27,7 +27,7 @@ public class ProductDataAccessService implements ProductDao {
             case "ztoa" -> "ORDER BY products.name DESC";
             case "mostpopular" -> "LEFT JOIN order_lines ON (products.name = order_lines.products_name)\n" +
                     "GROUP BY products.name\n" +
-                    "ORDER BY SUM(order_lines.quantity_ordered) DESC";
+                    "ORDER BY SUM(order_lines.quantity_ordered) DESC NULLS LAST";
             default -> null;
         };
         final String sql = "SELECT products.name, products.price, products.image_url, products.stock\n" +

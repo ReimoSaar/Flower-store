@@ -57,23 +57,23 @@ function ProductCard({ name, price, stock, image_url }) {
     const setImage = () => {
         if (stock <= 0) {
             return (
-                <div className="image-box">
-                    <img className="image-box__image image-box__image--product" key={name} src={image_url} alt="" width="350" height="200" />
-                    <img className="image-box__image image-box__image--out-of-stock" src={outOfStockImage} alt="" width="350" height="200" />
+                <div className="product-card__image-box">
+                    <img className="product-card__image-box-image product-card__image-box-image--product" key={name} src={image_url} alt="" width="350" height="200" />
+                    <img className="product-card__image-box-image product-card__image-box-image--out-of-stock" src={outOfStockImage} alt="" width="350" height="200" />
                 </div>
             )
         } else {
             return (
-                <div className="image-box">
-                    <img className="image-box__image image-box__image--product" key={name} src={image_url} alt="" width="350" height="200" />
+                <div className="product-card__image-box">
+                    <img className="product-card__image-box-image product-card__image-box-image--product" key={name} src={image_url} alt="" width="350" height="200" />
                 </div>
             )
         }
     }
     return (
-        <div className="product-card-container">
-            <animated.div className="product-card" style={productsCardBorderStyle} onMouseEnter={() => setShowCartButton(true)} onMouseLeave={() => setShowCartButton(false)}>
-                <Link to={`/products/${name}`} style={{ textDecoration: 'none', color: 'black' }}>
+        <div className="product-card">
+            <animated.div className="product-card__inner" style={productsCardBorderStyle} onMouseEnter={() => setShowCartButton(true)} onMouseLeave={() => setShowCartButton(false)}>
+                <Link to={`/products/${name}`} className="product-card__link">
                     <h2 className="product-card__name">{name}</h2>
                     {setImage()}
                 </Link>
