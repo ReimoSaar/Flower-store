@@ -1,16 +1,15 @@
 # Flower-store
 My first dockerized full stack application. Created with ReactJS, PostgreSQL, Spring Boot and NGINX.
 
-## Images:
-![flower-store](https://user-images.githubusercontent.com/63605374/88483653-e779e180-cf71-11ea-8451-4cc19997db84.jpg)
-
-![flower-store-2](https://user-images.githubusercontent.com/63605374/88484225-bb605f80-cf75-11ea-9c26-35df59ac67b6.jpg)
-
-![flower-store-3](https://user-images.githubusercontent.com/63605374/88484230-be5b5000-cf75-11ea-9838-054abb329932.jpg)
-
-![flower-store-4](https://user-images.githubusercontent.com/63605374/88484231-c0251380-cf75-11ea-9314-e142db935a95.jpg)
-
-![flower-store-5](https://user-images.githubusercontent.com/63605374/88484234-c2876d80-cf75-11ea-9e54-e511ad0f5263.jpg)
+## preview:
+### Adding items to cart
+![flower-store-adding](https://user-images.githubusercontent.com/63605374/89740352-86cdc700-da90-11ea-953d-a24dd2a23a7b.gif)
+### Menu
+![flower-store-menu](https://user-images.githubusercontent.com/63605374/89739459-85e56700-da89-11ea-8be1-d2a49194baa2.gif)
+### Buying
+![flower-store-buying](https://user-images.githubusercontent.com/63605374/89739721-c1813080-da8b-11ea-8bab-f9fbde306575.gif)
+### Filter
+![flower-store-filter](https://user-images.githubusercontent.com/63605374/89739978-e24a8580-da8d-11ea-9d3c-576c50161d66.gif)
 
 ## Features:
 - Simple buying system.
